@@ -11,6 +11,10 @@ public class lab_9 {
         }
         return array;
     }
+    public static String StrIn(){
+        Scanner in = new Scanner(System.in);
+        return (in.nextLine());
+    }
 
     public static void num1(int n) {
         char[] syms = InputArrOfChar(n);
@@ -210,6 +214,7 @@ public class lab_9 {
         }
         System.out.println("Количество правильно вычисленных выражений: " + cor);
     }
+    //check out mb remake
     public static String num5(String input, int index){
                 Map<String, Integer> wordCount = new HashMap<>();
                 String[] words = input.split(" ");
@@ -231,11 +236,301 @@ public class lab_9 {
                 String output = result.toString().trim();
                 return output;
             }
+    public static void num6_1(){
+                int count = 20;
+                String[][] publishers = new String[count][18];
+                for (int i = 0; i < count; i++) {
+                    System.out.println("Введите информацию об издательстве " + (i + 1) + ":");
+
+                    System.out.print("Страна: ");
+                    publishers[i][0] = StrIn();
+
+                    System.out.print("Город: ");
+                    publishers[i][1] = StrIn();
+
+                    System.out.print("Название: ");
+                    publishers[i][2] = StrIn();
+
+                    System.out.print("Рейтинг: ");
+                    publishers[i][3] = StrIn();
+
+                    System.out.print("Год создания: ");
+                    publishers[i][4] = StrIn();
+
+                    System.out.print("Количество сотрудников: ");
+                    publishers[i][5] = StrIn();
+
+                    System.out.print("Количество сотрудников с профессиональным образованием в области перевода: ");
+                    publishers[i][6] = StrIn();
+
+                    System.out.print("Количество сотрудников с филологическим образованием: ");
+                    publishers[i][7] = StrIn();
+
+                    System.out.print("Количество авторов, с которыми сотрудничает издательство: ");
+                    publishers[i][8] = StrIn();
+
+                    System.out.print("Среднее количество книг, выпускаемых в год: ");
+                    publishers[i][9] = StrIn();
+
+                    System.out.print("Количество бестселлеров: ");
+                    publishers[i][10] = StrIn();
+
+                    System.out.print("Средний доход в год: ");
+                    publishers[i][11] = StrIn();
+
+                    System.out.print("Средняя стоимость 1-ой книги: ");
+                    publishers[i][12] = StrIn();
+
+                    System.out.print("Расходы на рекламу: ");
+                    publishers[i][13] = StrIn();
+
+                    System.out.print("Наличие собственных книжных магазинов (да/нет): ");
+                    publishers[i][14] = StrIn();
+
+                    System.out.print("Количество собственных магазинов: ");
+                    publishers[i][15] = StrIn();
+
+                    System.out.print("Наличие наград (да/нет): ");
+                    publishers[i][16] = StrIn();
+
+                    System.out.print("Количество наград: ");
+                    publishers[i][17] = StrIn();
+
+                    System.out.println();
+                }
+
+                int countHighRate = 0;
+                int countBestseilers = 0;
+                int countAthrs = 0;
+                int countTrsl = 0;
+                int countPhilosophy = 0;
+                int countAdv = 0;
+
+                for (int i = 0; i < count; i++) {
+                    String city = publishers[i][1];
+                    double rating = Double.parseDouble(publishers[i][3]);
+                    int bestsellers = Integer.parseInt(publishers[i][10]);
+                    int staff = Integer.parseInt(publishers[i][5]);
+                    int authors = Integer.parseInt(publishers[i][8]);
+                    double translationEducationPercentage = (Double.parseDouble(publishers[i][6]) / staff) * 100;
+                    double philologyEducationPercentage = (Double.parseDouble(publishers[i][7]) / staff) * 100;
+                    double advPercentage = (Double.parseDouble(publishers[i][13]) / Double.parseDouble(publishers[i][11])) * 100;
+
+                    if (rating > 2.5) {
+                        countHighRate++;
+                    }
+                    if (bestsellers >= 5) {
+                        countBestseilers++;
+                    }
+                    if (authors > 3 * staff) {
+                        countAthrs++;
+                    }
+                    if (translationEducationPercentage >= 20) {
+                        countTrsl++;
+                    }
+                    if (philologyEducationPercentage >= 30) {
+                        countPhilosophy++;
+                    }
+                    if (advPercentage < 20) {
+                        countAdv++;
+                    }
+                }
+                System.out.println("Количество издательств по городам с рейтингом больше 2.5: " + countHighRate);
+                System.out.println("Количество издательств по городам с не менее 5 бестселлерами: " + countBestseilers);
+                System.out.println("Количество издательств, у которых количество авторов в 3 и более раза превышает количество сотрудников: " + countAthrs);
+                System.out.println("Количество издательств по странам, у которых 20% сотрудников имеют профессиональное образование в области перевода: " + countTrsl);
+                System.out.println("Количество издательств по странам, у которых не менее 30% сотрудников имеют филологическое образование: " + countPhilosophy);
+                System.out.println("Количество издательств по странам, у которых расходы на рекламу составляют менее 20% от среднего дохода: " + countAdv);
+    }
+    public static void num6_2(){
+                List<String[]> publishers = new ArrayList<>();
+                boolean continueInput = true;
+                while (continueInput) {
+                    System.out.println("Введите информацию об издательстве (или введите 'q' для выхода):");
+
+                    System.out.print("Страна: ");
+                    String country = StrIn();
+
+                    if (country.equalsIgnoreCase("q")) {
+                        break;
+                    }
+
+                    System.out.print("Город: ");
+                    String city = StrIn();
+
+                    System.out.print("Название: ");
+                    String name = StrIn();
+
+                    System.out.print("Рейтинг: ");
+                    String rating = StrIn();
+
+                    System.out.print("Год создания: ");
+                    String year = StrIn();
+
+                    System.out.print("Количество сотрудников: ");
+                    String countStuff = StrIn();
+
+                    System.out.print("Количество сотрудников с профессиональным образованием в области перевода: ");
+                    String countTrsl = StrIn();
+
+                    System.out.print("Количество сотрудников с филологическим образованием: ");
+                    String countPsihology = StrIn();
+
+                    System.out.print("Количество авторов, с которыми сотрудничает издательство: ");
+                    String countAuther = StrIn();
+
+                    System.out.print("Среднее количество книг, выпускаемых в год: ");
+                    String countbook = StrIn();
+
+                    System.out.print("Количество бестселлеров: ");
+                    String countBestsailer = StrIn();
+
+                    System.out.print("Средний доход в год: ");
+                    String annualIncome = StrIn();
+
+                    System.out.print("Средняя стоимость 1-ой книги: ");
+                    String bookPrice = StrIn();
+
+                    System.out.print("Расходы на рекламу: ");
+                    String adv = StrIn();
+
+                    System.out.print("Наличие собственных книжных магазинов (да/нет): ");
+                    String hasBookstores = StrIn();
+
+                    System.out.print("Количество собственных магазинов: ");
+                    String countBookStores = StrIn();
+
+                    System.out.print("Наличие наград (да/нет): ");
+                    String hasAwards = StrIn();
+
+                    System.out.print("Количество наград: ");
+                    String countAwards = StrIn();
+
+                    String[] publisherData = {country, city, name, rating, year, countStuff, countTrsl, countPsihology, countAuther, countbook, countBestsailer, annualIncome, bookPrice, adv, hasBookstores, countBookStores, hasAwards, countAwards};
+                    publishers.add(publisherData);
+
+                    System.out.print("Продолжить ввод данных? (да/нет): ");
+                    String continueInputStr = StrIn();
+
+                    continueInput = continueInputStr.equalsIgnoreCase("да");
+
+                    System.out.println();
+                }
+
+        int countRate = 0;
+        int countBestsailers = 0;
+        int countAuthorsOverStaff = 0;
+        int countTrslations = 0;
+        int countPsyho = 0;
+        int countLow = 0;
+
+        for (String[] publisherData : publishers) {
+            String city = publisherData[1];
+            double rating = Double.parseDouble(publisherData[3]);
+            int bestsellers = Integer.parseInt(publisherData[10]);
+            int staff = Integer.parseInt(publisherData[5]);
+            int authors = Integer.parseInt(publisherData[8]);
+            double translationEducationPercentage = (Double.parseDouble(publisherData[6]) / staff) * 100;
+            double philologyEducationPercentage = (Double.parseDouble(publisherData[7]) / staff) * 100;
+            double advPercentage = (Double.parseDouble(publisherData[13]) / Double.parseDouble(publisherData[11])) * 100;
+
+            if (rating > 2.5) {
+                countRate++;
+            }
+
+            if (bestsellers >= 5) {
+                countBestsailers++;
+            }
+
+            if (authors > 3 * staff) {
+                countAuthorsOverStaff++;
+            }
+
+            if (translationEducationPercentage >= 20) {
+                countTrslations++;
+            }
+
+            if (philologyEducationPercentage >= 30) {
+                countPsyho++;
+            }
+
+            if (advPercentage < 20) {
+                countLow++;
+            }
+        }
+
+        System.out.println("Количество издательств по городам с рейтингом больше 2.5: " + countRate);
+        System.out.println("Количество издательств по городам с не менее 5 бестселлерами: " + countBestsailers);
+        System.out.println("Количество издательств, у которых количество авторов в 3 и более раза превышает количество сотрудников: " + countAuthorsOverStaff);
+        System.out.println("Количество издательств по странам, у которых 20% сотрудников имеют профессиональное образование в области перевода: " + countTrslations);
+        System.out.println("Количество издательств по странам, у которых не менее 30% сотрудников имеют филологическое образование: " + countPsyho);
+        System.out.println("Количество издательств по странам, у которых расходы на рекламу составляют менее 20% от среднего дохода: " + countLow);
+}
+    public static String num7(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int length = a.length();
+        for (int i = 0; i < length; i++) {
+            result.append(a.charAt(i));
+            result.append(b.charAt(i));
+       }
+       return result.toString();
+    }
+    public static String num8(String text){
+        StringBuilder compressedText = new StringBuilder();
+        int count = 1;
+
+        for (int i = 0; i < text.length() - 1; i++) {
+            char fstchar = text.charAt(i);
+            char nextChar = text.charAt(i + 1);
+
+            if (fstchar == nextChar) {
+                count++;
+            } else {
+                compressedText.append(fstchar);
+                if (count > 1) {
+                    compressedText.append(count);
+                }
+                count = 1;
+            }
+        }
+        compressedText.append(text.charAt(text.length() - 1));
+        if (count > 1) {
+            compressedText.append(count);
+        }
+
+        return compressedText.toString();
+    }
+    public static String num9(String text){
+                StringBuilder newText = new StringBuilder();
+                boolean insideComment = false;
+                for (int i = 0; i < text.length(); i++) {
+                    if (i < text.length() - 1 && text.charAt(i) == '/' && text.charAt(i + 1) == '*') {
+                        insideComment = true;
+                        i++; // Пропустить символ '*'
+                    } else if (i < text.length() - 1 && text.charAt(i) == '*' && text.charAt(i + 1) == '/') {
+                        insideComment = false;
+                        i++; // Пропустить символ '/'
+                    } else if (i < text.length() - 1 && text.charAt(i) == '/' && text.charAt(i + 1) == '/') {
+                        // Пропустить остаток строки после "//"
+                        while (i < text.length() && text.charAt(i) != '\n') {
+                            i++;
+                        }
+                    } else if (!insideComment) {
+                        newText.append(text.charAt(i));
+                    }
+                }
+                return newText.toString();
+            }
+    public static void num10(){
+
+    }
+
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         System.out.println("Input number of ex");
         int num = in.nextInt();
         int n;
+        String text;
         switch (num) {
             case 1:
                 System.out.println("Input length of array of char");
@@ -262,18 +557,39 @@ public class lab_9 {
             //remake it
             case 5:
                 System.out.println("Input line: ");
-                String input = in.nextLine();
+                String input =  StrIn();
                 System.out.println("Input index: ");
                 int id = in.nextInt();
                 System.out.println("Результат: " + num5(input,id));
+                break;
             case 6:
-
+                System.out.println("Reglamented input");
+                num6_1();
+                System.out.println("Not reglamented input");
+                num6_2();
+                break;
             case 7:
-
+                System.out.println("Input 1 line: ");
+                String a = StrIn();
+                System.out.println("Input 2 line: ");
+                String b = StrIn();
+                if (a.length()==b.length()) {
+                    System.out.println("Результат: " + num7(a, b));
+                }
+                else {System.out.println("ОДИНАКОВЫЕ ПО ДЛИНЕ");}
+                break;
             case 8:
-
+                text = StrIn();
+                System.out.println("Сжатый текст: " + num8(text));
+                break;
             case 9:
-
+                text = StrIn();
+                String newText = num9(text);
+                if (newText.isEmpty()) {
+                    System.out.println("Текст не содержит комментариев.");
+                } else {
+                    System.out.println("Обработанный текст:\n" + newText);
+                }
             case 10:
 
             case 11:
