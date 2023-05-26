@@ -15,7 +15,13 @@ public class lab_9 {
         Scanner in = new Scanner(System.in);
         return (in.nextLine());
     }
-
+    public static String[] ArrOfStr(int n){
+        String[] strings = new String[n];
+        for (int i = 0; i<n; i++){
+            strings[i] = StrIn();
+        }
+        return strings;
+    }
     public static void num1(int n) {
         char[] syms = InputArrOfChar(n);
         int dd = 0;
@@ -521,8 +527,96 @@ public class lab_9 {
                 }
                 return newText.toString();
             }
-    public static void num10(){
+            public static int num10_Brands(String[] objects) {
+                int count = 0;
 
+                return count;
+            }
+
+            public static void num10_inputig(String[] objects, double capacityThreshold) {
+                for (String object : objects) {
+                    String[] data = object.split(";");
+                    double capacity = Double.parseDouble(data[3].trim());
+                    if (capacity > capacityThreshold) {
+                        System.out.println("Марка: " + data[0].trim().split(":")[1].trim());
+                        System.out.println("Номер: " + data[1].trim());
+                        System.out.println("Пункт назначения: " + data[2].trim());
+                        System.out.println("Грузоподъемность: " + capacity + " тонн");
+                        System.out.println();
+                    }
+                }
+
+    }
+    public static void num11(String [] strings){
+                String[] formattedStrings1 = num11_1(strings);
+                System.out.println("Пример 1: Преобразование всех букв в верхний регистр");
+                System.out.println(Arrays.toString(formattedStrings1));
+                String[] formattedStrings2 = num11_2(strings);
+                System.out.println("Пример 2: Удаление всех символов, кроме букв и пробелов");
+                System.out.println(Arrays.toString(formattedStrings2));
+                String[] formattedStrings3 = num11_3(strings);
+                System.out.println("Пример 3: Замена символов, используя расскладку \"qwerty\" -> \"йцукен\"");
+                System.out.println(Arrays.toString(formattedStrings3));
+            }
+    public static String[] num11_1(String[] strings) {
+        String[] formattedStrings = new String[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+                formattedStrings[i] = strings[i].toUpperCase();
+        }
+        return formattedStrings;
+    }
+
+    public static String[] num11_2(String[] strings) {
+        String[] formattedStrings = new String[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+              formattedStrings[i] = strings[i].replaceAll("[^a-zA-Z\\s]", "");
+        }
+        return formattedStrings;
+    }
+
+    public static String[] num11_3(String[] strings) {
+           String[] formattedStrings = new String[strings.length];
+           for (int i = 0; i < strings.length; i++) {
+                    formattedStrings[i] = strings[i].replaceAll("q", "й")
+                            .replaceAll("w", "ц")
+                            .replaceAll("e", "у")
+                            .replaceAll("r", "к")
+                            .replaceAll("t", "е")
+                            .replaceAll("y", "н")
+                            .replaceAll("u", "г")
+                            .replaceAll("i", "ш")
+                            .replaceAll("o", "щ")
+                            .replaceAll("p", "з")
+                            .replaceAll("a", "ф")
+                            .replaceAll("s", "ы")
+                            .replaceAll("d", "в")
+                            .replaceAll("f", "а")
+                            .replaceAll("g", "п")
+                            .replaceAll("h", "р")
+                            .replaceAll("j", "о")
+                            .replaceAll("k", "л")
+                            .replaceAll("l", "д")
+                            .replaceAll("z", "я")
+                            .replaceAll("x", "ч")
+                            .replaceAll("c", "с")
+                            .replaceAll("v", "м")
+                            .replaceAll("b", "и")
+                            .replaceAll("n", "т")
+                            .replaceAll("m", "ь");
+                }
+               return formattedStrings;
+    }
+    public static void num12(String[] strings, String[] searchWords, String[] replacements){
+        for (int i = 0; i < strings.length; i++) {
+            String originalString = strings[i];
+            String modifiedString = originalString;
+            for (int j = 0; j < searchWords.length; j++) {
+                modifiedString = modifiedString.replaceAll(searchWords[j], replacements[j]);
+            }
+            System.out.println("Исходная строка: " + originalString);
+            System.out.println("Измененная строка: " + modifiedString);
+            System.out.println();
+        }
     }
 
     public static void main(String[] args){
@@ -590,9 +684,54 @@ public class lab_9 {
                 } else {
                     System.out.println("Обработанный текст:\n" + newText);
                 }
+                break;
+                //remake it
             case 10:
-
+                text = "Рейс: Мерседес; 123AB; Москва; 2.5; 100; 250\n" +
+                        "Рейс: Форд; 456CD; Санкт-Петербург; 3; 120; 360\n" +
+                        "Рейс: БМВ; 789EF; Новосибирск; 1.8; 90; 162";
+                String[] objects = text.split("\\.");
+                int carsWithMatchingBrand = num10_Brands(objects);
+                System.out.println("Количество автомобилей с совпадающей маркой в номере: " + carsWithMatchingBrand);
+                System.out.println("Автомобили с грузоподъемностью более 2 тонн:");
+                num10_inputig(objects, 2);
+                break;
             case 11:
+                System.out.println("Input num of words");
+                n = in.nextInt();
+                String[] strings = ArrOfStr(n);
+                num11(strings);
+                break;
+            case 12:
+                String[] stringes = {
+                        "учащийся образовательного учереждения",
+                        "обучающийся в ВУЗе",
+                        "профильнаая работа для ученика",
+                        "студент ПНИПУ 2023",
+                        "я получил степень бакалавра",
+                        "я обучаюсь на магистра",
+                        "событие датируемое 2020 годом"
+                };
+                String[] searchWords = {
+                        "учащийся",
+                        "обучающийся",
+                        "ученик",
+                        "студент",
+                        "бакалавр",
+                        "магистр",
+                        "2020"
+                };
+                String[] replacements = {
+                        "студент",
+                        "отчисленный",
+                        "специалист",
+                        "выпускник",
+                        "магистр",
+                        "аспирант",
+                        "2021"
+                };
+                num12(stringes, searchWords, replacements);
+                break;
         }
     }
-        }
+}
