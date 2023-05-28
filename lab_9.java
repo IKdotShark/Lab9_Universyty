@@ -517,8 +517,25 @@ public class lab_9 {
                 }
                 return newText.toString();
             }
-    public static void num10(){
+    public static void num10(String [] objects){
+        int count = 0;
+        System.out.println("Грузоподъемность больше 2 кг у машин: ");
+        for (String object : objects) {
+            String[] str = object.split(";");
+            String brand = str[1];
+            String numb = str[2];
+            double a = Double.parseDouble(str[4]);
 
+            if (numb.matches(".*[" + brand + "].*")) {
+                count++;
+            }
+
+            if (a > 2) {
+                System.out.println(Arrays.toString(str));
+            }
+        }
+
+        System.out.println("Количество автомобилей с буквой марки в номере: " + count);
     }
     public static void num11(String [] strings){
                 String[] formattedStrings1 = num11_1(strings);
@@ -656,7 +673,9 @@ public class lab_9 {
                 }
                 break;
             case 10:
-
+                String data = "Рейс «СТ»; Toyota; В493ОТ; Сочи; 3; 5500; 16500.Рейс «НР»; Nissan; P777ТН; Нижний Новгород; 2; 4500; 9000.Рейс «ВЛ»; Volkswagen; Е333КР; Владивосток; 5; 7000; 35000.Рейс «УР»; UAZ; У777АУ; Уфа; 2; 4000; 8000.Рейс «МР»; Mercedes; М888ЕЕ; Мурманск; 4; 6500; 26000.Рейс «БМ»; BMW; В777ВМ; Белгород; 3; 5500; 16500.";
+                String[] objects = data.split("\\.");
+                num10(objects);
                 break;
             case 11:
                 System.out.println("Input num of words");
