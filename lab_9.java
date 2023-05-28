@@ -36,7 +36,6 @@ public class lab_9 {
         System.out.println("Количество символов ':' в массиве: " + dd);
         System.out.println("Количество символов ';' в массиве: " + dnd);
     }
-
     public static boolean isbinstr(String numb) {
         for (char d : numb.toCharArray()) {
             if (d != '0' && d != '1') {
@@ -45,7 +44,6 @@ public class lab_9 {
         }
         return true;
     }
-
     public static void num2() {
         Scanner in = new Scanner(System.in);
         String binstr;
@@ -70,7 +68,6 @@ public class lab_9 {
             System.out.print(d + " ");
         }
     }
-
     public static int num3_a(char[] arr) {
         int Counter = 0;
         for (char c : arr) {
@@ -80,7 +77,6 @@ public class lab_9 {
         }
         return Counter;
     }
-
     public static boolean num3_b(char[] arr) {
         boolean check = false;
         for (char c : arr) {
@@ -92,7 +88,6 @@ public class lab_9 {
         return check;
 
     }
-
     public static boolean num3_c(char[] arr) {
         boolean check = false;
         int Count = 0;
@@ -107,7 +102,6 @@ public class lab_9 {
         }
         return check;
     }
-
     public static boolean num3_d(char[] arr) {
         boolean check = false;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -119,7 +113,6 @@ public class lab_9 {
         }
         return check;
     }
-
     public static boolean num3_e(char[] arr) {
         boolean check = false;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -130,7 +123,6 @@ public class lab_9 {
         }
         return check;
     }
-
     public static boolean num3_f(char[] arr) {
         boolean check = false;
         for (int i = 1; i < arr.length - 2; i++) {
@@ -141,11 +133,10 @@ public class lab_9 {
         }
         return check;
     }
-    private static boolean isVal_num4(String expr) {
+    public static boolean isVal_num4(String expr) {
         return expr.matches("(\\d+\\*?)+");
     }
-
-    private static double unknownepr_num4(String expr){
+    public static double unknownepr_num4(String expr){
         String[] numb = expr.split("\\*");
         double result = Double.parseDouble(numb[0]);
         for (int i = 1; i < numb.length; i++) {
@@ -220,7 +211,6 @@ public class lab_9 {
         }
         System.out.println("Количество правильно вычисленных выражений: " + cor);
     }
-    //check out mb remake
     public static String num5(String input, int index){
                 Map<String, Integer> wordCount = new HashMap<>();
                 String[] words = input.split(" ");
@@ -512,12 +502,12 @@ public class lab_9 {
                 for (int i = 0; i < text.length(); i++) {
                     if (i < text.length() - 1 && text.charAt(i) == '/' && text.charAt(i + 1) == '*') {
                         insideComment = true;
-                        i++; // Пропустить символ '*'
+                        i++;
                     } else if (i < text.length() - 1 && text.charAt(i) == '*' && text.charAt(i + 1) == '/') {
                         insideComment = false;
-                        i++; // Пропустить символ '/'
+                        i++;
                     } else if (i < text.length() - 1 && text.charAt(i) == '/' && text.charAt(i + 1) == '/') {
-                        // Пропустить остаток строки после "//"
+
                         while (i < text.length() && text.charAt(i) != '\n') {
                             i++;
                         }
@@ -527,24 +517,7 @@ public class lab_9 {
                 }
                 return newText.toString();
             }
-            public static int num10_Brands(String[] objects) {
-                int count = 0;
-
-                return count;
-            }
-
-            public static void num10_inputig(String[] objects, double capacityThreshold) {
-                for (String object : objects) {
-                    String[] data = object.split(";");
-                    double capacity = Double.parseDouble(data[3].trim());
-                    if (capacity > capacityThreshold) {
-                        System.out.println("Марка: " + data[0].trim().split(":")[1].trim());
-                        System.out.println("Номер: " + data[1].trim());
-                        System.out.println("Пункт назначения: " + data[2].trim());
-                        System.out.println("Грузоподъемность: " + capacity + " тонн");
-                        System.out.println();
-                    }
-                }
+    public static void num10(){
 
     }
     public static void num11(String [] strings){
@@ -565,7 +538,6 @@ public class lab_9 {
         }
         return formattedStrings;
     }
-
     public static String[] num11_2(String[] strings) {
         String[] formattedStrings = new String[strings.length];
         for (int i = 0; i < strings.length; i++) {
@@ -573,7 +545,6 @@ public class lab_9 {
         }
         return formattedStrings;
     }
-
     public static String[] num11_3(String[] strings) {
            String[] formattedStrings = new String[strings.length];
            for (int i = 0; i < strings.length; i++) {
@@ -648,7 +619,6 @@ public class lab_9 {
             case 4:
                 num4();
                 break;
-            //remake it
             case 5:
                 System.out.println("Input line: ");
                 String input =  StrIn();
@@ -685,16 +655,8 @@ public class lab_9 {
                     System.out.println("Обработанный текст:\n" + newText);
                 }
                 break;
-                //remake it
             case 10:
-                text = "Рейс: Мерседес; 123AB; Москва; 2.5; 100; 250\n" +
-                        "Рейс: Форд; 456CD; Санкт-Петербург; 3; 120; 360\n" +
-                        "Рейс: БМВ; 789EF; Новосибирск; 1.8; 90; 162";
-                String[] objects = text.split("\\.");
-                int carsWithMatchingBrand = num10_Brands(objects);
-                System.out.println("Количество автомобилей с совпадающей маркой в номере: " + carsWithMatchingBrand);
-                System.out.println("Автомобили с грузоподъемностью более 2 тонн:");
-                num10_inputig(objects, 2);
+
                 break;
             case 11:
                 System.out.println("Input num of words");
